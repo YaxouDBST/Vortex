@@ -66,6 +66,137 @@ body {
 }
 
 /*
+name panel
+*/
+.vortex-name-panel {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    max-width: 280px;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(20, 20, 20, 0.9) 100%);
+    border-left: 2px solid rgba(255, 255, 255, 0.2);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+.vortex-name-content h2 {
+    font-family: var(--vortex-font-family);
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.name-input {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    color: white;
+    font-family: var(--vortex-font-family);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.name-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.name-input:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.generate-btn {
+    padding: 0.8rem 1.5rem;
+    background: linear-gradient(135deg, rgba(100, 200, 255, 0.3) 0%, rgba(100, 150, 255, 0.2) 100%);
+    border: 1px solid rgba(100, 200, 255, 0.5);
+    border-radius: 4px;
+    color: white;
+    font-family: var(--vortex-font-family);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.generate-btn:hover {
+    background: linear-gradient(135deg, rgba(100, 200, 255, 0.5) 0%, rgba(100, 150, 255, 0.4) 100%);
+    border-color: rgba(100, 200, 255, 0.8);
+    box-shadow: 0 0 20px rgba(100, 200, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.generate-btn:active {
+    transform: translateY(0);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .vortex-name-panel {
+        max-width: 100%;
+        width: auto;
+        right: 0;
+        height: auto;
+        bottom: 0;
+        top: auto;
+        border-left: none;
+        border-top: 2px solid rgba(255, 255, 255, 0.2);
+        padding: 1.5rem;
+    }
+    
+    .vortex-name-content h2 {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .name-input {
+        padding: 0.7rem;
+        font-size: 0.85rem;
+    }
+    
+    .generate-btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .vortex-name-panel {
+        padding: 1rem;
+    }
+    
+    .vortex-name-content h2 {
+        font-size: 0.9rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .name-input {
+        padding: 0.6rem;
+        font-size: 0.8rem;
+    }
+    
+    .generate-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+    }
+}
+
+/*
 vortex
 */
 .vortex {
@@ -561,8 +692,9 @@ vortex
 .vortex:has(.vortex-controls-wrapper > div:nth-child(81):hover) {
     --vortex-rotation-y: calc(var(--vortex-rotation-step-4) + var(--vortex-rotation-y-start));
     --vortex-rotation-x: calc(calc(var(--vortex-rotation-step-3) * -1) + var(--vortex-rotation-x-start));
-}S
+}
 
+/* Stop animations on any hover */
 .vortex:has(.vortex-controls-wrapper > div:hover) .vortex-wrapper .vortex-wrapper-rotation-y,
 .vortex:has(.vortex-controls-wrapper > div:hover) .vortex-wrapper .vortex-wrapper-rotation-x {
     animation: none;

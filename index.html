@@ -3,10 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vortex</title>
+    <title>Un round</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div class="vortex-name-panel">
+    <div class="vortex-name-content">
+        <h2>Teste ton nom le s </h2>
+        <input type="text" id="nameInput" class="name-input" placeholder="Enter a name..." maxlength="20">
+        <button class="generate-btn" onclick="generateVortex()">aze</button>
+    </div>
+</div>
+
 <div class="vortex">
     <div class="vortex-wrapper" style="--_num-elements: 48; --_num-sub-elements: 12">
         <div class="vortex-wrapper-rotation-y">
@@ -698,5 +706,55 @@
         <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
     </div>
 </div>
+
+<script>
+// Initialize with RACHEL on first visit
+function initializeVortex() {
+    const savedName = localStorage.getItem('vortexName');
+    const nameToUse = savedName || 'RACHEL';
+    
+    if (!savedName) {
+        localStorage.setItem('vortexName', 'RACHEL');
+    }
+    
+    document.getElementById('nameInput').value = nameToUse;
+    updateVortexText(nameToUse);
+}
+
+// Generate vortex with custom name
+function generateVortex() {
+    const input = document.getElementById('nameInput');
+    const name = input.value.trim().toUpperCase();
+    
+    if (!name) {
+        alert('Aze teste avec un nom jsp');
+        return;
+    }
+    
+    localStorage.setItem('vortexName', name);
+    updateVortexText(name);
+}
+
+// Update all text in vortex elements
+function updateVortexText(name) {
+    const elements = document.querySelectorAll('.vortex-sub-element > div > div');
+    const repeatedName = name + '&nbsp;' + name;
+    
+    elements.forEach(el => {
+        el.innerHTML = repeatedName;
+    });
+}
+
+// Allow Enter key to generate
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('nameInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            generateVortex();
+        }
+    });
+    
+    initializeVortex();
+});
+</script>
 </body>
 </html>
